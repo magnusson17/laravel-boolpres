@@ -16,7 +16,8 @@
         </div> -->
 
             <div class="container">
-                <PostList/>
+                <!-- <PostList/> -->
+                <router-view></router-view>
             </div>
         </main>
     </div>
