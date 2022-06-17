@@ -12,8 +12,8 @@ import NotFoundPage from './components/pages/NotFoundPage.vue';
 const router = new VueRouter({
     mode: 'history',
     routes: [
-        { path: '/', component: HomePage },
-        { path: '/contacts', component: ContactPage },
-        { path: '*', component: NotFoundPage }
+        { path: '/', component: HomePage, name: 'home' },
+        { path: '/contacts', component: ContactPage, name: 'contacts' },
+        { path: '*', component: NotFoundPage, name: 'notFound' }
     ]
 });
