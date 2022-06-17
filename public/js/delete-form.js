@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -104,14 +104,14 @@ deleteForm.forEach(function (form) {
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /*!*******************************************!*\
   !*** multi ./resources/js/delete-form.js ***!
   \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\gabri\OneDrive\Desktop\esBoolean\laravel-api\resources\js\delete-form.js */"./resources/js/delete-form.js");
+module.exports = __webpack_require__(/*! C:\Users\gabri\OneDrive\Desktop\esBoolean\laravel-boolpres\resources\js\delete-form.js */"./resources/js/delete-form.js");
 
 
 /***/ })

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::middleware('auth')
     Route::resource('posts', 'PostController');
 });
 
+// questa parte qua mi dice: any api non gestita sopra riuslerà come guest.home, ora questa parte la scarico a Vue, sara lei a gestire le rotte in questa sezione
 Route::get('{any?}', function(){
     return view('guest.welcome');
 })->where("any", ".*");

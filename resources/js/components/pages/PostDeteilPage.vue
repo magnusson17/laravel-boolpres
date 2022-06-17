@@ -1,6 +1,6 @@
 <template>
     <div>
-        <PostList/>
+        pag singola post
     </div>
 </template>
 
