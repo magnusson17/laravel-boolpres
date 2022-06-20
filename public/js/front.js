@@ -18867,7 +18867,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************!*\
   !*** ./resources/js/front.js ***!
   \*******************************/
-/*! exports provided: default */
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18887,7 +18887,6 @@ var root = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     return h(_components_App_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
   }
 });
-/* harmony default export */ __webpack_exports__["default"] = (_routes_js__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 /***/ }),
 
@@ -18895,7 +18894,7 @@ var root = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*!********************************!*\
   !*** ./resources/js/routes.js ***!
   \********************************/
-/*! no exports provided */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18937,6 +18936,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: 'notFound'
   }]
 });
+/* harmony default export */ __webpack_exports__["default"] = (router);
 
 /***/ }),
 

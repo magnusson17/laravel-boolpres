@@ -21,3 +21,5 @@ const router = new VueRouter({
         { path: '*', component: NotFoundPage, name: 'notFound' }
     ]
 });
+
+export default router;
