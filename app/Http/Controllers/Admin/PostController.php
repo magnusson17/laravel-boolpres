@@ -23,8 +23,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        return view('admin.posts.index', compact('posts'));
+        // $posts = Post::all();
+        // return view('admin.posts.index', compact('posts'));
+
+        $posts = Post::orderby('updated_at', 'DESC')->with('Category', 'tags')->limit(5)->get();
+        return response()->json(compact('posts'));
     }
 
     /**
