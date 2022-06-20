@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import HomePage from './components/pages/HomePage.vue';
-import ContactPage from './components/pages/ContactPage.vue';
+import ContactList from './components/pages/ContactList.vue';
 import NotFoundPage from './components/pages/NotFoundPage.vue';
 import PostDeteilPage from './components/pages/PostDeteilPage.vue';
 
@@ -16,7 +16,7 @@ const router = new VueRouter({
     routes: [
         // IO gli sto dicendo: nel path '/' portami ad homePage
         { path: '/', component: HomePage, name: 'home' },
-        { path: '/contacts', component: ContactPage, name: 'contacts' },
+        { path: '/contacts', component: ContactList, name: 'contacts' },
         { path: '/posts/:id', component: PostDeteilPage, name: 'post-deteil' },
         { path: '*', component: NotFoundPage, name: 'notFound' }
     ]
