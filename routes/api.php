@@ -31,7 +31,9 @@ Route::get('/test', function(){
 
 // Route::get('/posts', Api\PostController@index);
 
+// vado a definire la struttura della rotta. Ciò che l'utente deve adndare a inserire dentro axios per restituire l'info in questione
 Route::namespace('Api')->group( function(){
+    // quando viene attivata questa rotta (localHost/posts) allora viene attivato il controller index() (http/controllers/api/PostController). La f index() salva dentro una variabile le info.
     Route::get('/posts', 'PostController@index');
     Route::get('/posts{id}', 'PostController@show');
 });

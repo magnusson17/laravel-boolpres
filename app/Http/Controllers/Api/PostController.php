@@ -1,5 +1,5 @@
 <?php
-
+// Questo controller riguarderà solo l'API
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
@@ -15,7 +15,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post = Post::all();
+        // salva tutte le info grazie al modello Post. 
+        // ordino le info partendo dall'ultima inserita. Limito la visualizzazione di 5 post per pagina
+        $post = Post::orderBy('updated_at', 'DESC')->with('tags', 'Category')->paginate(5);
 
         return response()->json( compact('post') );
     }
@@ -47,11 +49,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // se avessi messo show(Post $post) non sarei stato in grado di strutturare la parte 1) del codice
     public function show($id)
     {
-
+        // 1) la variabile post contiene la nostra query di ricerca
         $post = Post::with('Category', 'tags')->find($id);
 
+        // tale query la passo ora nel json. Verrà generata un Api: api/posts/id(di riferimento)
         return response()->json( compact('post') );
     }
 
