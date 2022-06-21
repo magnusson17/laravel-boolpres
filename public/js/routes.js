@@ -2027,6 +2027,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "NotFoundPage"
 });
@@ -2051,7 +2052,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "HomePage",
+  name: "PostDeteilPage",
   components: {
     PostList: _posts_PostList_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
@@ -2859,34 +2860,47 @@ var render = function () {
                     ),
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "card-body" }, [
-                    _c(
-                      "p",
-                      { staticClass: "card-title" },
-                      _vm._l(post.tags, function (tag) {
-                        return _c(
-                          "span",
-                          {
-                            key: tag.id,
-                            staticClass: "badge",
-                            style: "background-color: " + tag.color,
+                  _c(
+                    "div",
+                    { staticClass: "card-body" },
+                    [
+                      _c(
+                        "p",
+                        { staticClass: "card-title" },
+                        _vm._l(post.tags, function (tag) {
+                          return _c(
+                            "span",
+                            {
+                              key: tag.id,
+                              staticClass: "badge",
+                              style: "background-color: " + tag.color,
+                            },
+                            [_vm._v(_vm._s(tag.label))]
+                          )
+                        }),
+                        0
+                      ),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text" }, [
+                        _vm._v(_vm._s(post.content)),
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: {
+                            to: {
+                              name: "post-deteil",
+                              params: { id: post.id },
+                            },
                           },
-                          [_vm._v(_vm._s(tag.label))]
-                        )
-                      }),
-                      0
-                    ),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "card-text" }, [
-                      _vm._v(_vm._s(post.content)),
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      { staticClass: "btn btn-primary", attrs: { href: "#" } },
-                      [_vm._v("Go somewhere")]
-                    ),
-                  ]),
+                        },
+                        [_vm._v("Go")]
+                      ),
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-footer text-muted" }, [
                     _vm._v("\n                2 days ago\n            "),
@@ -18764,10 +18778,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   // permette a VueRouter di passare dinamicamente da una pag ad un'altra cliccando sui tasti (avanti/indietro) del broswere. Tenendo in memoria qual era la pag prima e qual era la pag dopo.
   mode: 'history',
-  //
+  // inserisce la parola 'active' in una delle classi dinamiche di <router-link
   linkExactActiveClass: 'active',
   // 
-  routes: [// IO gli sto dicendo: nel path '/' portami ad homePage
+  routes: [// IO gli sto dicendo: nel path '/' portami ad HomePage
   {
     path: '/',
     component: _components_pages_HomePage_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -18776,7 +18790,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     path: '/contacts',
     component: _components_pages_ContactList_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     name: 'contacts'
-  }, {
+  }, // in laravel invece avrei usato {id}
+  {
     path: '/posts/:id',
     component: _components_pages_PostDeteilPage_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
     name: 'post-deteil'

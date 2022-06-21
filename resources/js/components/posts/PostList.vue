@@ -17,7 +17,7 @@
                             :style="`background-color: ${tag.color}`">{{ tag.label }}</span>
                     </p>
                     <p class="card-text">{{ post.content }}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <router-link :to="{ name: 'post-deteil', params: { id: post.id} }" class="btn btn-primary">Go</router-link>
                 </div>
                 <div class="card-footer text-muted">
                     2 days ago

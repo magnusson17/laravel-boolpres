@@ -31,6 +31,8 @@ Route::middleware('auth')
 });
 
 // questa parte qua mi dice: any api non gestita sopra riuslerà come guest.home, ora questa parte la scarico a Vue, sara lei a gestire le rotte in questa sezione
+
+// in guest.home sarà presente il tag <router-view> che a sua volta mi rimanda a routes.js
 Route::get('{any?}', function(){
     return view('guest.welcome');
 })->where("any", ".*");

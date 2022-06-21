@@ -8,7 +8,7 @@
 import PostList from '../posts/PostList.vue';
 
 export default {
-    name: "HomePage",
+    name: "PostDeteilPage",
 
     components: {
         PostList

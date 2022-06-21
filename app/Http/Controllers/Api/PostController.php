@@ -19,6 +19,7 @@ class PostController extends Controller
         // ordino le info partendo dall'ultima inserita. Limito la visualizzazione di 5 post per pagina
         $post = Post::orderBy('updated_at', 'DESC')->with('tags', 'Category')->paginate(5);
 
+        // compact andrebbe usato quando ho + array
         return response()->json( compact('post') );
     }
 
