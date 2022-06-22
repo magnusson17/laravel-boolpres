@@ -3,7 +3,8 @@
         <Loader v-if="isLoading" />
 
         <!-- faccio un props per recuperare i dati del componente -->
-        <Pagination :pagination="pagination"/>
+        <!-- e faccio un emit per passare i dati -->
+        <Pagination :pagination="pagination" @on-page-change="getPosts"/>
 
         <div v-if="posts.length">
             <!-- post as posts in php -->
@@ -17,6 +18,7 @@
                             :style="`background-color: ${tag.color}`">{{ tag.label }}</span>
                     </p>
                     <p class="card-text">{{ post.content }}</p>
+                    <!-- con params passo il parametro id= post.id -->
                     <router-link :to="{ name: 'post-deteil', params: { id: post.id} }" class="btn btn-primary">Go</router-link>
                 </div>
                 <div class="card-footer text-muted">
@@ -50,8 +52,9 @@ export default {
         }
     },
     methods: {
-        getPosts() {
-            axios.get("http://127.0.0.1:8000/api/posts")
+        // cosi sto dicendo: inizia a mostrare l'impagination a pag 1
+        getPosts(page = 1) {
+            axios.get("http://127.0.0.1:8000/api/posts?page=" + page)
                 .then((res) => {
                     console.log(res.data);
 
@@ -64,7 +67,7 @@ export default {
                     // Sto inserendo questo og {...} dentro l'og pagination: {}
                     this.pagination = {
                         lastPage: last_page,
-                        currentpage: current_page
+                        currentPage: current_page
                     }
                     //ora gli dico: dopo che hai chiamato axios, fammi partire una arrow fun. che mi trasformi isLoading in false.
                 }).then(() => {

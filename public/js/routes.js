@@ -1950,6 +1950,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Pagination',
   props: ['pagination']
@@ -2043,7 +2046,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _posts_PostList_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../posts/PostList.vue */ "./resources/js/components/posts/PostList.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
 //
 //
 //
@@ -2053,8 +2058,25 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostDeteilPage",
-  components: {
-    PostList: _posts_PostList_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  data: function data() {
+    return {
+      post: []
+    };
+  },
+  methods: {
+    getPosts: function getPosts() {
+      var _this = this;
+
+      // il routing mi permette di usare $route che mi da determinate info (this.$route è parte di vue)
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/posts/".concat(this.$route.params.id)).then(function (res) {
+        console.log(res.data);
+        _this.post = res.data;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getPosts();
+    console.log(this.$route);
   }
 });
 
@@ -2103,6 +2125,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 // importo axios
 
 
@@ -2121,10 +2145,12 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    // cosi sto dicendo: inizia a mostrare l'impagination a pag 1
     getPosts: function getPosts() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/posts").then(function (res) {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/posts?page=" + page).then(function (res) {
         console.log(res.data); // destrutturazione. Entro denntro un og e al suo interno recupero info come se fossero i parametri e i loro valori che sto cercando di mettere al interno
         // sto rendendo variabili i parametri che mi servono
 
@@ -2136,7 +2162,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.pagination = {
           lastPage: last_page,
-          currentpage: current_page
+          currentPage: current_page
         }; //ora gli dico: dopo che hai chiamato axios, fammi partire una arrow fun. che mi trasformi isLoading in false.
       }).then(function () {
         _this.isLoading = false;
@@ -2664,45 +2690,74 @@ var render = function () {
         "ul",
         { staticClass: "pagination" },
         [
-          _vm._m(0),
+          _vm.pagination.currentPage > 1
+            ? _c("li", { staticClass: "page-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.$emit(
+                          "on-page-change",
+                          _vm.pagination.currentPage - 1
+                        )
+                      },
+                    },
+                  },
+                  [_vm._v("Previous")]
+                ),
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _vm._l(_vm.pagination.lastPage, function (page) {
-            return _c("li", { key: page, staticClass: "page-item" }, [
-              _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-                _vm._v(_vm._s(page)),
-              ]),
-            ])
+            return _c(
+              "li",
+              {
+                key: page,
+                staticClass: "page-item",
+                on: {
+                  click: function ($event) {
+                    return _vm.$emit("on-page-change", page)
+                  },
+                },
+              },
+              [
+                _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                  _vm._v(_vm._s(page)),
+                ]),
+              ]
+            )
           }),
           _vm._v(" "),
-          _vm._m(1),
+          _vm.pagination.lastPage > _vm.pagination.currentPage
+            ? _c("li", { staticClass: "page-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.$emit(
+                          "on-page-change",
+                          _vm.pagination.currentPage + 1
+                        )
+                      },
+                    },
+                  },
+                  [_vm._v("Next")]
+                ),
+              ])
+            : _vm._e(),
         ],
         2
       ),
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "page-item" }, [
-      _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-        _vm._v("Previous"),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "page-item" }, [
-      _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-        _vm._v("Next"),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -2811,7 +2866,11 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    pag singola post\n")])
+  return _c("div", [
+    _c("p", [_vm._v("Pagina singola del post: " + _vm._s(_vm.post.title))]),
+    _vm._v(" "),
+    _c("span", [_vm._v(_vm._s(_vm.post.content))]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2840,7 +2899,10 @@ var render = function () {
     [
       _vm.isLoading ? _c("Loader") : _vm._e(),
       _vm._v(" "),
-      _c("Pagination", { attrs: { pagination: _vm.pagination } }),
+      _c("Pagination", {
+        attrs: { pagination: _vm.pagination },
+        on: { "on-page-change": _vm.getPosts },
+      }),
       _vm._v(" "),
       _vm.posts.length
         ? _c(

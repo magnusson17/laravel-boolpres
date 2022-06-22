@@ -57,7 +57,7 @@ class PostController extends Controller
         $post = Post::with('Category', 'tags')->find($id);
 
         // tale query la passo ora nel json. Verrà generata un Api: api/posts/id(di riferimento)
-        return response()->json( compact('post') );
+        return response()->json( $post );
     }
 
     /**

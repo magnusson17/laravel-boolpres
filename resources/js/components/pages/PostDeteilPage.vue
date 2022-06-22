@@ -1,18 +1,35 @@
 <template>
     <div>
-        pag singola post
+        <p>Pagina singola del post: {{ post.title }}</p>
+        <span>{{ post.content }}</span> 
     </div>
 </template>
 
 <script>
-import PostList from '../posts/PostList.vue';
+import axios from 'axios';
 
 export default {
     name: "PostDeteilPage",
 
-    components: {
-        PostList
+    data() {
+        return {
+            post: [],
+        }
+    },
+    methods: {
+        getPosts() {
+            // il routing mi permette di usare $route che mi da determinate info (this.$route è parte di vue)
+            axios.get(`http://127.0.0.1:8000/api/posts/${ this.$route.params.id }`)
+                .then((res) => {
+                    console.log(res.data);
+
+                    this.post = res.data;
+                })
+        }
+    },
+    mounted() {
+        this.getPosts();
+        console.log( this.$route );
     }
 }
-
 </script>
