@@ -23,7 +23,7 @@ const router = new VueRouter({
         { path: '/', component: HomePage, name: 'home' },
         { path: '/contacts', component: ContactList, name: 'contacts' },
         // in laravel invece avrei usato {id}
-        { path: '/posts/:id', component: PostDeteilPage, name: 'post-deteil' },
+        { path: '/posts/:slug', component: PostDeteilPage, name: 'post-deteil' },
         { path: '*', component: NotFoundPage, name: 'notFound' }
     ]
 });

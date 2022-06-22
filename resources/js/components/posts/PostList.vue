@@ -19,7 +19,7 @@
                     </p>
                     <p class="card-text">{{ post.content }}</p>
                     <!-- con params passo il parametro id= post.id -->
-                    <router-link :to="{ name: 'post-deteil', params: { id: post.id} }" class="btn btn-primary">Go</router-link>
+                    <router-link :to="{ name: 'post-deteil', params: { slug: post.slug} }" class="btn btn-primary">Go</router-link>
                 </div>
                 <div class="card-footer text-muted">
                     2 days ago

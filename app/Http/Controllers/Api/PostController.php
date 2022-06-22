@@ -51,10 +51,13 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     // se avessi messo show(Post $post) non sarei stato in grado di strutturare la parte 1) del codice
-    public function show($id)
+    public function show($slug)
     {
         // 1) la variabile post contiene la nostra query di ricerca
-        $post = Post::with('Category', 'tags')->find($id);
+        // il find può richiamare solo l'id. Quindi se uso slug devo riscrivere il codice
+        //$post = Post::with('Category', 'tags')->find($id);
+        $post = Post::where('slug', $slug)->with('Category', 'tags')->first();
+        if(!$post) return response('Post not found', 404);
 
         // tale query la passo ora nel json. Verrà generata un Api: api/posts/id(di riferimento)
         return response()->json( $post );

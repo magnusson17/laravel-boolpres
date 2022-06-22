@@ -20,7 +20,7 @@
                     </li>
                     <!-- qua non posso usare router-link perchè admin è gestito da laravel non da vue -->
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin/admin">Admin</a>
+                        <a class="nav-link" href="/admin">Admin</a>
                     </li>
                     
                     <li class="nav-item dropdown">
