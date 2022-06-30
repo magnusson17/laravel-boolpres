@@ -18,6 +18,8 @@ class AddCategoryIdToPostsTable extends Migration
             $table->unsignedBigInteger('category_id')->nullable()->after('id');
 
             // realizzare la relazione
+            // references fa riferimento alla colonna 
+            // on riferimento a tabella (categories)
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
                     
 
