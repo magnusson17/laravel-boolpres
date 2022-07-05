@@ -17,6 +17,7 @@ class PostController extends Controller
     {
         // salva tutte le info grazie al modello Post. 
         // ordino le info partendo dall'ultima inserita. Limito la visualizzazione di 5 post per pagina
+        // questa "pagina" non la devo vedere (anche perche se la vedo sarebbe solo un oggettone json gigante), mi serve solo per immagazzinare i dati in forma json
         $post = Post::orderBy('updated_at', 'DESC')->with('tags', 'Category')->paginate(5);
 
         // compact andrebbe usato quando ho + array
